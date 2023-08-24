@@ -17,7 +17,7 @@
 </h1>
 
 <div class="flex w-full h-[84vh] gap-6">
-	<Card class="col-span-2 w-2/3">
+	<Card class="w-2/3">
 		<h3
 			class="font-medium absolute z-10 left-6 top-4 px-3 py-1 bg-zinc-50 dark:bg-zinc-800 rounded-md text-sm flex items-center gap-4">
 			<span
