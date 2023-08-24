@@ -2,8 +2,7 @@
 	// 0.6 kB
 	import { page } from '$app/stores';
 	import Button from '$lib/components/form/button.svelte';
-	import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
-	import { faKey } from '@fortawesome/free-solid-svg-icons';
+	import { faGithub } from '@fortawesome/free-brands-svg-icons';
 	import Fa from 'svelte-fa';
 	import { fade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
@@ -57,34 +56,38 @@
 
 	<div class="flex flex-col w-full">
 		{#if isSigningIn}
-			<SignInForm {redirectTo} />
+			<SignInForm {redirectTo} bind:error />
 		{:else}
-			<SignUpForm />
+			<SignUpForm bind:error />
 		{/if}
+	</div>
 
-		{#if error}
-			<span in:fade out:fade class="text-red-400 text-xs text-right mr-4">
-				{error}
-			</span>
-		{/if}
+	{#if error || message}
+		<div class="pb-3 text-center" in:fade out:fade>
+			{#if error}
+				<span class="text-red-400 text-xs">
+					{error}
+				</span>
+			{/if}
 
-		{#if message}
-			<span in:fade out:fade class="text-emerald-500 text-xs text-right">
-				{message}
-			</span>
-		{/if}
-
-		<div class="flex flex-col gap-4 px-8 mt-6">
-			<div class="flex gap-4 items-center text-zinc-400 dark:text-zinc-700">
-				<span class="flex-1 border-b border-zinc-400 dark:border-zinc-700" />
-				ou
-				<span class="flex-1 border-b border-zinc-400 dark:border-zinc-700" />
-			</div>
-			<Button type="button" onclick={signInWithGithub}>
-				<Fa icon={faGithub} />
-				Continuar com Github
-			</Button>
+			{#if message}
+				<span class="text-emerald-500 text-xs">
+					{message}
+				</span>
+			{/if}
 		</div>
+	{/if}
+
+	<div class="flex flex-col gap-4 px-8 mt-2">
+		<div class="flex gap-4 items-center text-zinc-400 dark:text-zinc-700">
+			<span class="flex-1 border-b border-zinc-300 dark:border-zinc-700" />
+			ou
+			<span class="flex-1 border-b border-zinc-300 dark:border-zinc-700" />
+		</div>
+		<Button type="button" onclick={signInWithGithub}>
+			<Fa icon={faGithub} />
+			Continuar com Github
+		</Button>
 	</div>
 </div>
 

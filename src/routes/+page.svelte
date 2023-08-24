@@ -13,7 +13,7 @@
 
 <h1 class="font-semibold text-2xl">
 	Realtime com
-	<span class="font-bold text-[#3ecf8e]"> Supabase </span>
+	<span class="font-bold text-[#36bd6e]"> Supabase </span>
 </h1>
 
 <div class="flex w-full h-[84vh] gap-6">
