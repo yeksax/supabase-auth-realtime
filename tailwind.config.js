@@ -2,7 +2,12 @@
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts,css}'],
 	theme: {
-		extend: {}
+		extend: {
+			fontSize: {
+				xxs: '.625rem',
+			}
+		},
 	},
-	plugins: []
+	darkMode: 'class',
+	plugins: [require('tailwind-scrollbar')],
 };

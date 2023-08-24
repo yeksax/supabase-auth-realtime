@@ -9,32 +9,36 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      User: {
+      messages: {
         Row: {
-          createdAt: string
-          email: string
+          author: string | null
+          content: string
+          created_at: string
           id: number
-          name: string
-          password: string
-          updatedAt: string
+          reactions: string[]
         }
         Insert: {
-          createdAt?: string
-          email: string
+          author?: string | null
+          content?: string
+          created_at?: string
           id?: number
-          name: string
-          password: string
-          updatedAt: string
+          reactions: string[]
         }
         Update: {
-          createdAt?: string
-          email?: string
+          author?: string | null
+          content?: string
+          created_at?: string
           id?: number
-          name?: string
-          password?: string
-          updatedAt?: string
+          reactions?: string[]
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "messages_author_fkey"
+            columns: ["author"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import '../app.css';
 	import { invalidate } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { minifiedSidebar } from '$lib/stores';
 
 	export let data;
 
@@ -20,11 +22,11 @@
 
 		return () => subscription.unsubscribe();
 	});
+
+	$: minifiedSidebar.set($page.url.pathname === '/auth');
 </script>
 
-<div class="flex h-full text-zinc-700">
-	<Sidebar />
-	<main class="p-6 flex-1 overflow-y-auto">
-		<slot />
-	</main>
-</div>
+<Sidebar />
+<main class="flex-1 h-full flex flex-col justify-between">
+	<slot />
+</main>

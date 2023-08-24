@@ -1,15 +1,17 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import { minifiedSidebar, theme } from '$lib/stores';
 	import {
-		faBell,
-		faClipboardList,
-		faGear,
 		faHome,
+		faLock,
+		faSign,
 		faSignIn,
+		faSigning,
 		type IconDefinition,
 	} from '@fortawesome/free-solid-svg-icons';
+	import { MoonIcon, SunIcon } from 'svelte-feather-icons';
+	import ThemeSwitcher from '../theme-switcher.svelte';
 	import NavItem from './nav-item.svelte';
-
-	import { page } from '$app/stores';
 
 	$: hasSession = $page.data.session != null;
 
@@ -32,9 +34,9 @@
 					icon: faHome,
 				},
 				{
-					href: '/mycards',
-					name: 'Listas',
-					icon: faClipboardList,
+					href: '/protected',
+					name: 'Rota protegida',
+					icon: faLock,
 					condition: hasSession,
 				},
 			],
@@ -47,30 +49,21 @@
 					icon: faSignIn,
 					condition: !hasSession,
 				},
-				{
-					href: '/notifications',
-					name: 'Notificações',
-					icon: faBell,
-					condition: hasSession,
-				},
-				{
-					href: '/settings',
-					name: 'Configurações',
-					icon: faGear,
-					condition: hasSession,
-				},
 			],
 		},
 	];
 </script>
 
-<div class="top-6 left-6 h-full p-6 w-[21rem]">
-	<div class="rounded-lg bg-white border px-4 py-6 h-full text-xs flex flex-col gap-6">
+<div class="top-6 left-6 h-full {$minifiedSidebar ? 'w-max' : 'w-[20rem]'}">
+	<div class="rounded-lg border dark:border-zinc-800 {$minifiedSidebar ? 'px-2 py-3' : ' px-4 py-6'} h-full text-xs flex flex-col gap-6">
 		<div class="flex flex-col justify-between h-full">
-			{#each groups as group}
+			{#each groups as group, i}
 				<nav class="gap-2 flex flex-col">
 					{#if group.title}
-						<span class="text-zinc-700 text-xs font-semibold">{group.title}</span>
+						<span class="text-xs font-semibold">{group.title}</span>
+					{/if}
+					{#if i == groups.length - 1}
+						<ThemeSwitcher />
 					{/if}
 					{#each group.links as link (link.href)}
 						{#if link.condition == undefined || link.condition === true}

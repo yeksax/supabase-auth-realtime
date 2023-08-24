@@ -1,6 +1,6 @@
 // src/routes/+layout.ts
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
-import type { Database } from '$lib/database.types.js';
+import type { Database } from '$lib/database.types';
 import { createSupabaseLoadClient } from '@supabase/auth-helpers-sveltekit';
 
 export const load = async ({ fetch, data, depends }) => {
