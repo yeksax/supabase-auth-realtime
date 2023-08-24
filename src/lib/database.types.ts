@@ -15,21 +15,18 @@ export interface Database {
           content: string
           created_at: string
           id: number
-          reactions: string[]
         }
         Insert: {
           author?: string | null
           content?: string
           created_at?: string
           id?: number
-          reactions: string[]
         }
         Update: {
           author?: string | null
           content?: string
           created_at?: string
           id?: number
-          reactions?: string[]
         }
         Relationships: [
           {

@@ -108,7 +108,6 @@
 		await supabase.from('messages').insert({
 			content: message,
 			author: session?.user.id,
-			reactions: [],
 		});
 
 		message = '';
@@ -146,7 +145,7 @@
 
 <div
 	use:scrollBottom
-	class="flex flex-col gap-2 h-full overflow-auto pr-2 scrollbar-thin scrollbar-track-zinc-400 dark:scrollbar-track-zinc-800 dark:scrollbar-thumb-zinc-700">
+	class="flex flex-col h-fit gap-2 overflow-auto pr-2 scrollbar-thin scrollbar-track-zinc-400 dark:scrollbar-track-zinc-800 dark:scrollbar-thumb-zinc-700">
 	{#each $history as data}
 		{#if typeof data === 'string'}
 			<span class="text-zinc-500 text-xs text-center w-full first-of-type:mt-2 last-of-type:mb-2">
