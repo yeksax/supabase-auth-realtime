@@ -1,19 +1,7 @@
 // src/hooks.server.js
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
-import { error, redirect, type Handle } from '@sveltejs/kit';
-
-const PROTECTED_ROUTES = ['/protected'];
-
-function regexCreator(route: string) {
-	let regexString = route;
-	if (!route.includes('**')) {
-		return new RegExp(regexString + '$');
-	}
-
-	regexString = regexString.replaceAll('/**', '.*');
-	return new RegExp('^' + regexString);
-}
+import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient({

@@ -1,0 +1,64 @@
+<script lang="ts">
+  import { enhance } from '$app/forms';
+	import Button from '$lib/components/form/button.svelte';
+	import FormInput from '$lib/components/form/form-input.svelte';
+	import { faEnvelope, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+	import Fa from 'svelte-fa';
+
+  export let password = '';
+  export let email = '';
+  export let error = null as string | null;
+  let confirmPassword = '';
+  let passwordVisible = false;
+
+  function checkForErrors() {
+		if (password != confirmPassword) error = 'As senhas devem ser iguais';
+		else error = null;
+	}
+</script>
+
+<form on:input={checkForErrors} method="post" class="flex flex-col gap-4" use:enhance>
+	<h2 class="mt-4 text-sm text-left ml-6">
+		<Fa icon={faEnvelope} class="inline mr-2" /> Criar conta com Email
+	</h2>
+  <div class="flex flex-col">
+    <FormInput label="Email" name="email" bind:value={email} type="email" />
+    <FormInput
+      label="Senha"
+      autocomplete="new-password"
+      name="password"
+      bind:value={password}
+      type={passwordVisible ? 'text' : 'password'}>
+      <button
+        tabindex="-1"
+        type="button"
+        class="p-1 aspect-square text-xs"
+        on:click={() => (passwordVisible = !passwordVisible)}>
+        {#if passwordVisible}
+          <Fa icon={faEyeSlash} />
+        {:else}
+          <Fa icon={faEye} />
+        {/if}
+      </button>
+    </FormInput>
+    <FormInput
+      label="Confirmar senha"
+      autocomplete="new-password"
+      bind:value={confirmPassword}
+      type={passwordVisible ? 'text' : 'password'}>
+      <button
+        tabindex="-1"
+        type="button"
+        class="p-1 aspect-square text-xs"
+        on:click={() => (passwordVisible = !passwordVisible)}>
+        {#if passwordVisible}
+          <Fa icon={faEyeSlash} />
+        {:else}
+          <Fa icon={faEye} />
+        {/if}
+      </button>
+    </FormInput>
+  </div>
+
+  <Button class="mx-6">Confirmar</Button>
+</form>

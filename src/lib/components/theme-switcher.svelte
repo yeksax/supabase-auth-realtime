@@ -27,9 +27,9 @@
 
 <button
 	on:click={switchTheme}
-	class="w-full justify-between font-medium flex items-center transition-all dark:hover:bg-zinc-800 hover:bg-zinc-50 gap-4 rounded-md {$minifiedSidebar
-		? 'px-1.5'
-		: 'px-4'} py-1.5 hover:text-zinc-700 text-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-50">
+	class="w-full font-medium flex items-center transition-all dark:hover:bg-zinc-800 hover:bg-zinc-50 gap-4 rounded-md {$minifiedSidebar
+		? 'px-1.5 justify-center'
+		: 'px-4 justify-between'} py-1.5 hover:text-zinc-700 text-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-50">
 	<div class="flex gap-4 items-center">
 		{#if $theme === 'LIGHT'}
 			<SunIcon size="14" />
