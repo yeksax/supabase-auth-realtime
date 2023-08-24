@@ -33,7 +33,7 @@
 </script>
 
 <div on:input={console.log} class="flex flex-col gap-4">
-	<h2 class="mt-4 text-sm text-left ml-6">
+	<h2 class="mt-4 text-left ml-6">
 		<Fa icon={faEnvelope} class="inline mr-2" /> Entrar com Email
 	</h2>
 	<div class="flex flex-col">

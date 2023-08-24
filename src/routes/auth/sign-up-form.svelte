@@ -18,7 +18,7 @@
 </script>
 
 <form on:input={checkForErrors} method="post" class="flex flex-col gap-4" use:enhance>
-	<h2 class="mt-4 text-sm text-left ml-6">
+	<h2 class="mt-4 text-left ml-6">
 		<Fa icon={faEnvelope} class="inline mr-2" /> Criar conta com Email
 	</h2>
   <div class="flex flex-col">
