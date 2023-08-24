@@ -5,6 +5,7 @@
 	export let preventPlaceholderMove = false;
 	export let value = '';
 	export let shortcutHandler = (e: KeyboardEvent) => {};
+	export let onInput = (string: string) => {};
 </script>
 
 <div class="relative group {$$props.class}">
@@ -20,6 +21,7 @@
 
 	<input
 		type="text"
+		on:input={() => onInput(value)}
 		on:keydown={shortcutHandler}
 		bind:value
 		{...$$restProps}
